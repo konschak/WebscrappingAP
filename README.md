@@ -1,33 +1,34 @@
 # WebscrappingAP
 Código de webscrapping do apartamento
-`!pip install requests
-!pip install bs4
-import pandas as pd
-from bs4 import BeautifulSoup
-import requests
-import re
-import math`
 
-url = 'https://www.chavesnamao.com.br/apartamentos-a-venda/pr-curitiba/?utm_source=google&utm_medium=conversao_venda&utm_campaign=conversao_venda_pr_cwb&utm_content=&gclid=Cj0KCQjw5f2lBhCkARIsAHeTvlgjJp5ARf3TRrjw_2-ALBhu4JcJo0MeJibemBCcMosjALMJrUBzFUkaArTHEALw_wcB'
+`!pip install requests`
+`!pip install bs4`
+`import pandas as pd`
+`from bs4 import BeautifulSoup`
+`import requests`
+`import re`
+`import math`
 
-headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}
+`url = 'https://www.chavesnamao.com.br/apartamentos-a-venda/pr-curitiba/?utm_source=google&utm_medium=conversao_venda&utm_campaign=conversao_venda_pr_cwb&utm_content=&gclid=Cj0KCQjw5f2lBhCkARIsAHeTvlgjJp5ARf3TRrjw_2-ALBhu4JcJo0MeJibemBCcMosjALMJrUBzFUkaArTHEALw_wcB'`
 
-site = requests.get(url, headers=headers)
+`headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}`
 
-soup = BeautifulSoup(site.content, 'html.parser')
+`site = requests.get(url, headers=headers)`
 
-qtd_itens = soup.find('b').get_text().strip()
-print(qtd_itens)
+`soup = BeautifulSoup(site.content, 'html.parser')`
 
-qtd_itens = qtd_itens.replace('.','')
-qtd_itens
+`qtd_itens = soup.find('b').get_text().strip()`
+`print(qtd_itens)`
 
-ultima_pagina = math.ceil(int(qtd_itens)/ 10)
-ultima_pagina
+`qtd_itens = qtd_itens.replace('.','')`
+`qtd_itens`
 
-dic_produtos = {'preco':[], 'metros_quadrados':[], 'endereco':[], 'link' : []}
+`ultima_pagina = math.ceil(int(qtd_itens)/ 10)`
+`ultima_pagina`
 
-for i in range(1, 200):
+`dic_produtos = {'preco':[], 'metros_quadrados':[], 'endereco':[], 'link' : []}`
+
+`for i in range(1, 200):
     url_pag = f'https://www.chavesnamao.com.br/apartamentos-a-venda/pr-curitiba/?pg={i}'
     site = requests.get(url_pag, headers=headers)
     soup = BeautifulSoup(site.content, 'html.parser')
@@ -43,8 +44,8 @@ for i in range(1, 200):
         dic_produtos['preco'].append(preco)
         dic_produtos['metros_quadrados'].append(metros_quadrados)
         dic_produtos['endereco'].append(endereco)
-        dic_produtos['link'].append(link)
+        dic_produtos['link'].append(link)`
 
-from google.colab import drive
+`from google.colab import drive
 drive.mount ('/drive')
-df.to_csv('/drive/My Drive/Colab Notebooks/Apartamentos.csv', encoding='utf-8', sep=';')
+df.to_csv('/drive/My Drive/Colab Notebooks/Apartamentos.csv', encoding='utf-8', sep=';')`
