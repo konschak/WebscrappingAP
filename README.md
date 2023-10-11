@@ -34,17 +34,17 @@ Código de webscrapping do apartamento
     soup = BeautifulSoup(site.content, 'html.parser')
     produtos = soup.find_all('div', class_=re.compile('imoveis__Card'))`
 
-    `for produto in produtos:
+    for produto in produtos:
         preco = produto.find('p', class_=re.compile('price')).contents[0].get_text().strip()
         metros_quadrados = produto.find('ul', class_=re.compile('list im')).contents[0].get_text().strip().replace('m²','')
         endereco = produto.find('address').contents[1].get_text().strip().replace(', Curitiba','')
-        link = produto.find('span', class_=re.compile('link')).contents[0].get('href')`
+        link = produto.find('span', class_=re.compile('link')).contents[0].get('href')
 
-        `print(preco, metros_quadrados,endereco, link)
+        print(preco, metros_quadrados,endereco, link)
         dic_produtos['preco'].append(preco)
         dic_produtos['metros_quadrados'].append(metros_quadrados)
         dic_produtos['endereco'].append(endereco)
-        dic_produtos['link'].append(link)`
+        dic_produtos['link'].append(link)
 
 `from google.colab import drive
 drive.mount ('/drive')
