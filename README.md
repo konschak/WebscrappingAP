@@ -1,12 +1,12 @@
 # WebscrappingAP
 Código de webscrapping do apartamento
-!pip install requests
+`!pip install requests
 !pip install bs4
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
 import re
-import math
+import math`
 
 url = 'https://www.chavesnamao.com.br/apartamentos-a-venda/pr-curitiba/?utm_source=google&utm_medium=conversao_venda&utm_campaign=conversao_venda_pr_cwb&utm_content=&gclid=Cj0KCQjw5f2lBhCkARIsAHeTvlgjJp5ARf3TRrjw_2-ALBhu4JcJo0MeJibemBCcMosjALMJrUBzFUkaArTHEALw_wcB'
 
